@@ -47,6 +47,6 @@ fun ClosingMessage(
 
 @Preview(showBackground = true)
 @Composable
-fun ClosingMessagePreview() {
+private fun ClosingMessagePreview() {
     ClosingMessage()
 }

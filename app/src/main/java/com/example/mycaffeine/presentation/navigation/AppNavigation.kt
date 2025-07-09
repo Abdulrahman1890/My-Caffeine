@@ -6,13 +6,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.mycaffeine.presentation.screens.selectCoffeeScreen.SelectCoffeeScreen
 import com.example.mycaffeine.presentation.screens.customizeCoffeeScreen.CustomizeCoffeeScreen
 import com.example.mycaffeine.presentation.screens.goodByeScreen.GoodByeScreen
-import com.example.mycaffeine.presentation.screens.startingScreen.StartingScreen
-import com.example.mycaffeine.presentation.screens.readyOrderScreen.ReadyOrderScreen
 import com.example.mycaffeine.presentation.screens.preparingOrderScreen.PreparingOrderScreen
+import com.example.mycaffeine.presentation.screens.readyOrderScreen.ReadyOrderScreen
+import com.example.mycaffeine.presentation.screens.selectCoffeeScreen.SelectCoffeeScreen
 import com.example.mycaffeine.presentation.screens.snacksScreen.SnacksScreen
+import com.example.mycaffeine.presentation.screens.startingScreen.StartingScreen
 
 @Composable
 fun AppNavigation() {
@@ -56,7 +56,8 @@ fun AppNavigation() {
 
         composable(
             Screen.Enjoy.route,
-            arguments = listOf(navArgument("snackId") { type = NavType.IntType })) {
+            arguments = listOf(navArgument("snackId") { type = NavType.IntType })
+        ) {
             GoodByeScreen(
                 navController = navController
             )

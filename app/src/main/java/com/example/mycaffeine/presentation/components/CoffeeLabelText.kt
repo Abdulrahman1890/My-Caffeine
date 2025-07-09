@@ -53,7 +53,7 @@ fun GrayColumns(
 
 @Preview(showBackground = true)
 @Composable
-fun CoffeeLabelTextPreview() {
+private fun CoffeeLabelTextPreview() {
     CoffeeLabelText(
         "Coffee"
     )

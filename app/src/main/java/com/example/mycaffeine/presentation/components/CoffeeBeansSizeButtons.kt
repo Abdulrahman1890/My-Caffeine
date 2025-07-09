@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,7 +40,11 @@ fun CoffeeBeansSizeButtons(
     onStrengthSelected: (BeansSize) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val strengthLabels = listOf("Low", "Medium", "High")
+    val strengthLabels = listOf(
+        stringResource(R.string.low),
+        stringResource(R.string.medium),
+        stringResource(R.string.high)
+    )
 
     Column {
         Row(
@@ -70,7 +75,6 @@ fun CoffeeBeansSizeButtons(
     }
 }
 
-
 @Composable
 private fun StrengthButton(
     strengthLevel: BeansSize,
@@ -80,7 +84,7 @@ private fun StrengthButton(
     val animatedColor by animateColorAsState(
         targetValue = if (isSelected) CoffeePrimaryColor else OffWhiteColor,
         animationSpec = tween(durationMillis = 200),
-        label = "strengthButtonColor"
+        label = stringResource(R.string.strengthbuttoncolor)
     )
 
     Button(
@@ -101,12 +105,11 @@ private fun StrengthButton(
     ) {
         Image(
             painter = painterResource(id = R.drawable.beans),
-            contentDescription = "beans",
+            contentDescription = stringResource(R.string.beans),
             modifier = Modifier.size(24.dp)
         )
     }
 }
-
 
 @Composable
 private fun StrengthLabels(

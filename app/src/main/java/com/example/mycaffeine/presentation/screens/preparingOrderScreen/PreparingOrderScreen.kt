@@ -15,7 +15,8 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun PreparingOrderScreen(
     navController: NavController,
-    viewModel: PreparingOrderViewModel = koinViewModel()) {
+    viewModel: PreparingOrderViewModel = koinViewModel()
+) {
 
     val coffee = CoffeeDataSource.availableCoffee.find { it.id == viewModel.coffeeId }
     val cupImageRes = coffee?.images?.emptyCupImage ?: R.drawable.default_cup

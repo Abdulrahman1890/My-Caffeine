@@ -31,10 +31,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -55,7 +52,6 @@ import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -122,191 +118,48 @@ fun OrderReadyScreenContent(
             delayMillis = 200,
             easing = EaseOutCubic
         ),
-        label = "lidOffsetAnimation"
+        label = stringResource(R.string.lidoffsetanimation)
     )
-
-    val configuration = LocalConfiguration.current
-    val isLandscape = configuration.screenWidthDp > configuration.screenHeightDp
 
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color.White
     ) {
-        if (isLandscape) {
-            LandscapeLayout(
-                uiState = uiState,
-                isContentVisible = isContentVisible,
-                lidOffsetY = lidOffsetY,
-                onCloseClicked = onCloseClicked,
-                onTakeAwayToggled = onTakeAwayToggled,
-                onTakeSnackClicked = onTakeSnackClicked
-            )
-        } else {
-            PortraitLayout(
-                uiState = uiState,
-                isContentVisible = isContentVisible,
-                lidOffsetY = lidOffsetY,
-                onCloseClicked = onCloseClicked,
-                onTakeAwayToggled = onTakeAwayToggled,
-                onTakeSnackClicked = onTakeSnackClicked
-            )
-        }
-    }
-}
-
-@Composable
-private fun LandscapeLayout(
-    uiState: ReadyOrderUiState,
-    isContentVisible: Boolean,
-    lidOffsetY: Dp,
-    onCloseClicked: () -> Unit,
-    onTakeAwayToggled: () -> Unit,
-    onTakeSnackClicked: () -> Unit
-) {
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 24.dp, vertical = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+                .padding(horizontal = 24.dp, vertical = 32.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CoffeeCup(
-                coffeeImages = uiState.selectedCoffee!!.images,
-                lidOffsetY = lidOffsetY,
-                modifier = Modifier
-                    .fillMaxHeight(0.8f)
-                    .aspectRatio(1f)
-            )
-
-            Spacer(modifier = Modifier.width(24.dp))
-
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+            AnimatedVisibility(
+                visible = isContentVisible,
+                enter = slideInVertically(animationSpec = tween(800, easing = EaseOutCubic)) { -it }
             ) {
-                StatusIconAndText(isVisible = isContentVisible)
-                Spacer(modifier = Modifier.weight(1f))
-                BottomSection(
-                    isVisible = isContentVisible,
-                    isTakeAway = uiState.isTakeAway,
-                    topImage = uiState.selectedCoffee.images.topViewImage,
-                    onTakeAwayToggled = onTakeAwayToggled,
-                    onTakeSnackClicked = onTakeSnackClicked
+                TopSection(onCloseClicked = onCloseClicked)
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                CoffeeCup(
+                    coffeeImages = uiState.selectedCoffee!!.images,
+                    lidOffsetY = lidOffsetY,
+                    modifier = Modifier
+                        .fillMaxWidth(0.75f)
+                        .aspectRatio(1f)
                 )
             }
-        }
-        CancelButton(
-            onClick = onCloseClicked,
-            modifier = Modifier
-                .align(Alignment.TopStart)
-                .padding(16.dp)
-        )
-    }
-}
 
-@Composable
-private fun StatusIconAndText(isVisible: Boolean) {
-    AnimatedVisibility(
-        visible = isVisible,
-        enter = fadeIn(animationSpec = tween(durationMillis = 600, delayMillis = 200))
-    ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Box(
-                modifier = Modifier
-                    .size(64.dp)
-                    .drawBehind {
-                        drawIntoCanvas {
-                            val paint = Paint()
-                            val frameworkPaint = paint.asFrameworkPaint()
-                            val color = CoffeePrimaryColor
-                            val blurRadius = 16.dp.toPx()
+            Spacer(modifier = Modifier.weight(1f))
 
-                            if (blurRadius > 0) {
-                                frameworkPaint.maskFilter = (BlurMaskFilter(
-                                    blurRadius,
-                                    BlurMaskFilter.Blur.NORMAL
-                                ))
-                            }
-                            frameworkPaint.color = color.toArgb()
-
-                            it.drawCircle(
-                                center = center,
-                                radius = size.width / 2,
-                                paint = paint
-                            )
-                        }
-                    }
-                    .clip(CircleShape)
-                    .background(CoffeePrimaryColor),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Check,
-                    contentDescription = stringResource(R.string.order_ready),
-                    tint = Color.White,
-                    modifier = Modifier.size(32.dp)
-                )
-            }
-            Text(
-                text = stringResource(R.string.your_coffee_is_ready_enjoy),
-                fontSize = 22.sp,
-                fontFamily = Urbanist,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                color = SecondaryTextColor,
-                modifier = Modifier.padding(top = 16.dp)
+            BottomSection(
+                isVisible = isContentVisible,
+                isTakeAway = uiState.isTakeAway,
+                topImage = uiState.selectedCoffee!!.images.topViewImage,
+                onTakeAwayToggled = onTakeAwayToggled,
+                onTakeSnackClicked = onTakeSnackClicked
             )
         }
-    }
-}
-
-@Composable
-private fun PortraitLayout(
-    uiState: ReadyOrderUiState,
-    isContentVisible: Boolean,
-    lidOffsetY: Dp,
-    onCloseClicked: () -> Unit,
-    onTakeAwayToggled: () -> Unit,
-    onTakeSnackClicked: () -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 24.dp, vertical = 32.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        AnimatedVisibility(
-            visible = isContentVisible,
-            enter = slideInVertically(animationSpec = tween(800, easing = EaseOutCubic)) { -it }
-        ) {
-            TopSection(onCloseClicked = onCloseClicked)
-        }
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            CoffeeCup(
-                coffeeImages = uiState.selectedCoffee!!.images,
-                lidOffsetY = lidOffsetY,
-                modifier = Modifier
-                    .fillMaxWidth(0.75f)
-                    .aspectRatio(1f)
-            )
-        }
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        BottomSection(
-            isVisible = isContentVisible,
-            isTakeAway = uiState.isTakeAway,
-            topImage = uiState.selectedCoffee!!.images.topViewImage,
-            onTakeAwayToggled = onTakeAwayToggled,
-            onTakeSnackClicked = onTakeSnackClicked
-        )
     }
 }
 
@@ -470,13 +323,13 @@ fun CoffeeToggleButton(
     val trackColor by animateColorAsState(
         targetValue = if (isToggled) Color(0xFF8B5A2B) else Color(0xFFFBEAE0),
         animationSpec = tween(300),
-        label = "trackColor"
+        label = stringResource(R.string.trackcolor)
     )
 
     val horizontalBias by animateFloatAsState(
         targetValue = if (isToggled) -1f else 1f,
         animationSpec = tween(300),
-        label = "horizontalBias"
+        label = stringResource(R.string.horizontalbias)
     )
 
     Box(
@@ -533,7 +386,7 @@ fun CoffeeToggleButton(
 
 @Preview(showBackground = true)
 @Composable
-fun ReadyOrderScreenPreview() {
+private fun ReadyOrderScreenPreview() {
 
     val previewState = ReadyOrderUiState(
         selectedCoffee = CoffeeDataSource.availableCoffee.first(),

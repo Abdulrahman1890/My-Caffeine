@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,7 +40,7 @@ fun CoffeeStrength(
     val animatedCupScale by animateFloatAsState(
         targetValue = cupSize,
         animationSpec = tween(durationMillis = 300),
-        label = "cupScale"
+        label = stringResource(R.string.cupscale)
     )
 
     Box(
@@ -70,13 +71,13 @@ fun CoffeeStrength(
 
             Image(
                 painter = painterResource(id = R.drawable.default_cup),
-                contentDescription = "coffee cup",
+                contentDescription = stringResource(R.string.coffee_cup),
                 modifier = Modifier.size(199.4.dp, 244.dp)
             )
 
             Image(
                 painter = painterResource(id = R.drawable.brand_logo),
-                contentDescription = "cup icon",
+                contentDescription = stringResource(R.string.cup_icon),
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(66.dp)
@@ -86,7 +87,7 @@ fun CoffeeStrength(
 }
 
 @Composable
-fun AnimatedCoffeeBeans(
+private fun AnimatedCoffeeBeans(
     selectedStrength: BeansSize,
     modifier: Modifier = Modifier
 ) {
@@ -124,7 +125,7 @@ fun AnimatedCoffeeBeans(
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Image(
                     painter = painterResource(R.drawable.dropped_coffee_beans),
-                    contentDescription = "Coffee beans",
+                    contentDescription = stringResource(R.string.coffee_beans),
                     modifier = Modifier.size(100.dp)
                 )
             }

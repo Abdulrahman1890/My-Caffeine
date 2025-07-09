@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mycaffeine.R
@@ -43,7 +44,7 @@ fun AnimatedGhost(
     ) {
         Image(
             painter = painterResource(id = R.drawable.ghost),
-            contentDescription = "Ghost",
+            contentDescription = stringResource(R.string.ghost),
             modifier = Modifier
                 .width(244.dp)
                 .graphicsLayer {
@@ -52,7 +53,7 @@ fun AnimatedGhost(
         )
         Image(
             painter = painterResource(id = R.drawable.shadow),
-            contentDescription = "Ghost Shadow",
+            contentDescription = stringResource(R.string.ghost_shadow),
             modifier = Modifier
                 .width(177.dp)
                 .graphicsLayer {
@@ -68,6 +69,6 @@ private fun calculateShadowOpacity(floatingOffset: Float): Float {
 
 @Preview
 @Composable
-fun AnimatedGhostPreview() {
+private fun AnimatedGhostPreview() {
     AnimatedGhost()
 }

@@ -51,7 +51,8 @@ fun CoffeePreparationStatus(
                 fontFamily = Urbanist,
                 fontWeight = FontWeight.Medium,
                 color = LabelColor,
-                modifier = Modifier.padding(horizontal = 16.dp)
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
                     .offset(y = 250.dp)
             )
 
@@ -63,14 +64,14 @@ fun CoffeePreparationStatus(
             ) {
                 Image(
                     painter = painterResource(id = cupImage),
-                    contentDescription = "Coffee cup",
+                    contentDescription = stringResource(R.string.coffee_cup),
                     modifier = Modifier
                         .width(200.dp)
                         .height(244.dp)
                 )
                 Image(
                     painter = painterResource(id = R.drawable.brand_logo),
-                    contentDescription = "logo",
+                    contentDescription = stringResource(R.string.logo),
                     modifier = Modifier.size(66.dp)
                 )
             }
@@ -120,11 +121,11 @@ fun CoffeePreparationStatus(
                     ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    CoffeeLabelText("CO")
+                    CoffeeLabelText(stringResource(R.string.co))
                     GrayColumns()
-                    CoffeeLabelText("FF")
+                    CoffeeLabelText(stringResource(R.string.ff))
                     GrayColumns()
-                    CoffeeLabelText("EE")
+                    CoffeeLabelText(stringResource(R.string.ee))
                 }
 
                 Spacer(modifier = Modifier.height(64.dp))
@@ -135,9 +136,9 @@ fun CoffeePreparationStatus(
 
 @Preview(showBackground = true)
 @Composable
-fun CoffeePreparationStatusPreview() {
+private fun CoffeePreparationStatusPreview() {
     CoffeePreparationStatus(
-        volumeMl = "400 ML",
+        volumeMl = stringResource(R.string._400_ml),
         cupImage = R.drawable.default_cup,
         progress = 0.5f
     )

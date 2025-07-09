@@ -14,8 +14,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.mycaffeine.R
 import com.example.mycaffeine.ui.theme.LabelColor
 import kotlin.math.PI
 import kotlin.math.sin
@@ -30,7 +32,8 @@ fun AnimatedWaveProgressBar(
     val waveLengthPx = with(LocalDensity.current) { wavelength.toPx() }
     val amplitudePx = with(LocalDensity.current) { waveHeight.toPx() }
 
-    val infiniteTransition = rememberInfiniteTransition(label = "wave animation")
+    val infiniteTransition =
+        rememberInfiniteTransition(label = stringResource(R.string.wave_animation))
     val animatedProgress by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
@@ -38,7 +41,7 @@ fun AnimatedWaveProgressBar(
             animation = tween(5000, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         ),
-        label = "wave progress"
+        label = stringResource(R.string.wave_progress)
     )
 
     Canvas(

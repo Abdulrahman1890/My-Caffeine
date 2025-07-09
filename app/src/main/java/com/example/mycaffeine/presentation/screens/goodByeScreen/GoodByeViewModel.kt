@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.update
 
 class GoodByeViewModel(
     savedStateHandle: SavedStateHandle
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(GoodByeUiState())
     val uiState: StateFlow<GoodByeUiState> = _uiState.asStateFlow()

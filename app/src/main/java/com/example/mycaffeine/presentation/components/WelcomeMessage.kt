@@ -13,9 +13,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mycaffeine.R
-import com.example.mycaffeine.ui.theme.WelcomeTextColor
 import com.example.mycaffeine.ui.theme.PrimaryTextColor
 import com.example.mycaffeine.ui.theme.Urbanist
+import com.example.mycaffeine.ui.theme.WelcomeTextColor
 
 @Composable
 fun WelcomeMessage(
@@ -57,6 +57,6 @@ fun WelcomeMessage(
 
 @Preview
 @Composable
-fun WelcomeMessagePreview() {
+private fun WelcomeMessagePreview() {
     WelcomeMessage()
 }

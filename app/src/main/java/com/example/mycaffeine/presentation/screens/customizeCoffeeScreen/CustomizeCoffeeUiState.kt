@@ -21,7 +21,7 @@ data class CustomizeCoffeeUiState(
             CoffeeSize.M -> 1.0f
             CoffeeSize.L -> 1.2f
         }
-    
+
     enum class BeansSize {
         LOW, MEDIUM, HIGH
     }

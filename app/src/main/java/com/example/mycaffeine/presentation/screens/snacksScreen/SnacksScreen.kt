@@ -15,11 +15,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.mycaffeine.R
 import com.example.mycaffeine.presentation.components.CancelButton
 import com.example.mycaffeine.presentation.components.SnacksSlider
 import com.example.mycaffeine.presentation.navigation.Screen
@@ -51,7 +53,7 @@ fun SnacksScreen(
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "Take your snack",
+            text = stringResource(R.string.take_your_snack),
             color = SecondaryTextColor,
             fontFamily = Urbanist,
             fontWeight = FontWeight.Bold,
@@ -81,7 +83,7 @@ fun SnacksScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun SnacksScreenPreview(){
+private fun SnacksScreenPreview() {
     SnacksScreen(navController = NavController(LocalContext.current))
 }
 

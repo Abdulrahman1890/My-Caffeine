@@ -19,9 +19,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mycaffeine.R
 import com.example.mycaffeine.presentation.utils.coffeeDropShadow
 import com.example.mycaffeine.ui.theme.CoffeePrimaryColor
 import com.example.mycaffeine.ui.theme.OffWhiteColor
@@ -52,12 +54,12 @@ fun CoffeeSizeSelector(
             val buttonColor by animateColorAsState(
                 targetValue = if (isSelected) CoffeePrimaryColor else OffWhiteColor,
                 animationSpec = tween(durationMillis = 200),
-                label = "button color"
+                label = stringResource(R.string.button_color)
             )
             val textColor by animateColorAsState(
                 targetValue = if (isSelected) TextButtonColor else Color(0x991F1F1F),
                 animationSpec = tween(durationMillis = 200),
-                label = "text color"
+                label = stringResource(R.string.text_color)
             )
 
             Button(

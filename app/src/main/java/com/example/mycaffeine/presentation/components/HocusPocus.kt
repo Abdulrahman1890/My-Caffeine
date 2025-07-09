@@ -31,10 +31,10 @@ fun HocusPocus(
     modifier: Modifier = Modifier
 ) {
     val textLines = listOf(
-        "Hocus",
-        "Pocus",
-        "I Need Coffee",
-        "to Focus"
+        stringResource(R.string.hocus),
+        stringResource(R.string.pocus),
+        stringResource(R.string.i_need_coffee),
+        stringResource(R.string.to_focus)
     )
 
     Box(

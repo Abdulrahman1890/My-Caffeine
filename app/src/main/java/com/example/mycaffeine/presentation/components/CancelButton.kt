@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.mycaffeine.R
 import com.example.mycaffeine.ui.theme.OffWhiteColor
@@ -30,7 +31,7 @@ fun CancelButton(
     ) {
         Icon(
             painter = painterResource(id = R.drawable.close),
-            contentDescription = "cancel",
+            contentDescription = stringResource(R.string.cancel),
             modifier = Modifier
                 .align(Alignment.Center)
                 .size(24.dp)

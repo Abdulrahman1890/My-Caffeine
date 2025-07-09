@@ -21,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
@@ -137,7 +136,7 @@ fun SnacksSlider(
 
 @Preview(showBackground = true)
 @Composable
-fun SnacksSliderPreview() {
+private fun SnacksSliderPreview() {
     val pagerState = rememberPagerState(
         initialPage = 2,
         initialPageOffsetFraction = 0f,

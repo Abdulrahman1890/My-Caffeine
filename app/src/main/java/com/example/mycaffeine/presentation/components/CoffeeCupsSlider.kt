@@ -118,7 +118,7 @@ fun CoffeeCupsSliderPreview() {
         pagerState = rememberPagerState(
             initialPage = 0,
             initialPageOffsetFraction = 0F,
-            pageCount = { 1 }
+            pageCount = { 2 }
         )
     )
 }

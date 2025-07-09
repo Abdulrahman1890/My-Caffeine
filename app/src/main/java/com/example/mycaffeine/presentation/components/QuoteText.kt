@@ -40,20 +40,20 @@ fun QuoteText(
             fontSize = 20.sp,
             letterSpacing = 0.25.sp,
         )
-       BeansIcon(
-           modifier = Modifier
-               .padding(start = 6.dp)
-       )
+        BeansIcon(
+            modifier = Modifier
+                .padding(start = 6.dp)
+        )
     }
 }
 
 @Composable
-fun BeansIcon(
+private fun BeansIcon(
     modifier: Modifier = Modifier
-){
+) {
     Icon(
         painter = painterResource(id = R.drawable.coffee_beans),
-        contentDescription = "Coffee beans",
+        contentDescription = stringResource(R.string.coffee_beans),
         tint = CoffeePrimaryColor,
         modifier = modifier
             .size(32.dp)
@@ -62,6 +62,6 @@ fun BeansIcon(
 
 @Preview
 @Composable
-fun QuoteTextPreview() {
+private fun QuoteTextPreview() {
     QuoteText()
 }
