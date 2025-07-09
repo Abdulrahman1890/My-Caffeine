@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">My Caffeine</string>
+    <string name="bring_my_coffee">bring my coffee</string>
+    <string name="continuee">Continue</string>
+    <string name="star">Star</string>
+    <string name="more_espresso_less_depresso">More Espresso, Less Depresso</string>
+    <string name="abdulrahman">Abdulrahman ☀</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="what_would_you_like_to_drink_today">What would you like to drink today?</string>
+    <string name="bon_app_tit">Bon appétit</string>
+    <string name="magic_wand">Magic wand</string>
+    <string name="almost_done">Almost Done</string>
+    <string name="your_coffee_will_be_finish_in">Your coffee will be finish in</string>
+    <string name="order_ready">Order Ready</string>
+    <string name="your_coffee_is_ready_enjoy">Your coffee is ready,\nEnjoy</string>
+    <string name="coffee_cup">Coffee cup</string>
+    <string name="the_chance_coffee_logo">The Chance Coffee Logo</string>
+    <string name="coffee_lid">Coffee Lid</string>
+    <string name="take_away">Take Away</string>
+    <string name="take_snack">Take snack</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="toggle_thumb">Toggle Thumb</string>
+    <string name="thank_youuu">Thank youuu</string>
+</resources>
